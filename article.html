@@ -118,6 +118,36 @@
 
                 <div class="card border-dark mb-3" >
                     <div class="card-body">
+                        <div class="card-header"><h5 class="card-title">Une explication de Laravel</h5></div>
+                        <p class="card-text">L'objectif était de réaliser un site web, pour cela nous avoir repartis le travail, je m'occupais de l'algorithmie du site, et le lien base de données/site.
+                            nous avons donc utiliser Laravel, comment ça fonctionne ? Prenons pour exemple les recettes, premièrement il nous faudra un CRUD (Create/Read/Update/Remove).
+                            Donc on crée notre page de création composée d'un formulaire à remplir. Puis notre page de lecture composée d'une boucle d'affichage des données. Pour relier tout ça, on utilise un controlleur (Un fichier contenant toute les fonctions lié a une table de données).
+                            <img src="images/schema-views.PNG" class="card-img-top" alt="schema views" >
+                            Reprenons notre exemple, nous avons donc notre page création, notre page lecture et notre fonction pour enregistrer les infos. Nous allons donc continuer avec la modification et pour ça, on recommence : une page modification, une fonction dans le contrôleur et retour sur la page de lecture. Je vous laisse deviné pour la suppression, même schéma.
+                            Tout cela est possible, car Laravel integre une bibliotheque de lien predefinie et de fonction qui simplifi notre travail, il reste quand meme a notre charges de trier, recuperer et afficher les données. Voyons donc comment cela fonctionne en détails avec notre exemple, regardons de plus près la fonction :
+                            <img src="images/exemple_fonction.PNG" class="card-img-top" alt="exemple fonction" >
+                            On peut voir qu'elle contient la ligne "return view('recettes.show', compact('recette'));",on décortique un peu , "return" demande a notre page web d'aller quelque part, "view" indique de cela vas correspondre à un affichage,"(('recettes.show', compact('recette'))" maintenant voilà les données a afficher : la page show.blade.php compris dans le dossier recettes avec les paramètres "recette".
+                            Les paramètres recette, mais c'est quoi ? Regardons la ligne juste au-dessus "$recette = Recette::findOrFail($id);", bien examinons la "$recette" est la variable avec pour nom recette qui contiendra toute les données utiles, "Recette" indique le type de données donc toutes les infos relatives (nom de la base de données, de la table, nom des infos,etc.), "findOrFail($id)" indique que nous allons chercher ou échouer toutes les données comportant la variable "$id"(l'identifiant de la recette).
+                            Bien donc si je cherche la recette du poulet patates numéro 17 cela nous donnera "$recette = Recette::findOrFail(17);". Voilà comment fonctionne le contrôleur, chaque fonction réalise une action précise puis renvoie soit vers une autre fonction, soit vers une page a afficher. Revenons sur notre "Recette" avec un R majuscule, on a dit que c'était le type de données, mais on le défini où ? Bonne question, chaque données a un type different et pour cela on crée un model, ce model viendra calquer la table de données portant le meme nom.
+                            Donc nos recettes ont donc un controlleur, un model, une table, et autant de views qu'ils nous faut de pages juste pour eux.
+                            Mais ce n'est pas fini, toutes ces informations doivent circuler d'une page à une autre et sans ce mélanger avec les autres informations, Alors on va lui définir des routes.
+                            <img src="images/exemple_route.PNG" class="card-img-top" alt="exemple route" >
+                            Prenons en exemple celle de nos recettes "Route::resource('recettes', 'App\Http\Controllers\RecetteController');". Bien examinons là,"Route::resource" on indique qu'ils s'agit d'une route de type ressource, "recettes" le nom de notre route (qui est aussi le nom du dossier contenant nos views) et pour finir "App\Http\Controllers\RecetteController" le chemin d'accès vers le controlleur qui contiendra nos fonctions.
+                            C'est bon on as tout, une fois tout mis en commun, nos recettes s'affiche sur notre site et on peut les gérer. Bien sûr, il existe bien d'autres fonctions et d'autres possibilités.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success" align="center">
+                        <img src="images/controlleur_recette.PNG" class="card-img-top" alt="controlleur recette" style="width: 75%">
+                        <hr />
+                        <img src="images/routes.PNG" class="card-img-top" alt="fichier route" style="width: 75%">
+                        <hr />
+                        <img src="images/model.PNG" class="card-img-top" alt="fichier model" style="width: 75%">
+                        <hr />
+                        <img src="images/table_recette.PNG" class="card-img-top" alt="pnj" style="width: 75%">
+                    </div>
+                </div>
+
+                <div class="card border-dark mb-3" >
+                    <div class="card-body">
                         <div class="card-header"><h5 class="card-title">Virus-Sim</h5></div>
                         <p class="card-text">Durant l'année 2020/2021 au sein d'Ynov, j'ai participé au Ydays.
                             Que sont-ce que les Ydays? Se sont des journees de travail en groupe avec des etudiants d'autre filliales avec pour objectif de realiser un projet.
